@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +28,29 @@ public class UserController {
 
 
     private final UserService userService;
-
+    private final AuthenticationManager authenticationManager; // Add AuthenticationManager
     private final AppInfo appInfo;
 
     @GetMapping("/user/login")
     public String login(Model model){
         model.addAttribute(appInfo);
         return "/user/login";
+    }
+    @PostMapping("/user/login")
+    public String login(@RequestParam String uid, @RequestParam String pass, Model model){
+        if(uid.isEmpty() || pass.isEmpty()){
+            model.addAttribute("아이디와 비밀번호를 입력해 주세요");
+            return "/user/login";
+        }
+        try {
+            Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(uid, pass)
+            );
+            return "redirect:/article/list";
+        }catch (Exception e){
+            model.addAttribute("로그인 실패" + e.getMessage());
+            return "/user/login";
+        }
     }
 
     @GetMapping("/user/terms")
