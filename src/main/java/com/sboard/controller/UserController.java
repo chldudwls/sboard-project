@@ -36,22 +36,7 @@ public class UserController {
         model.addAttribute(appInfo);
         return "/user/login";
     }
-    @PostMapping("/user/login")
-    public String login(@RequestParam String uid, @RequestParam String pass, Model model){
-        if(uid.isEmpty() || pass.isEmpty()){
-            model.addAttribute("아이디와 비밀번호를 입력해 주세요");
-            return "/user/login";
-        }
-        try {
-            Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(uid, pass)
-            );
-            return "redirect:/article/list";
-        }catch (Exception e){
-            model.addAttribute("로그인 실패" + e.getMessage());
-            return "/user/login";
-        }
-    }
+
 
     @GetMapping("/user/terms")
     public String terms(Model model){

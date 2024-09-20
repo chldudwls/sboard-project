@@ -35,7 +35,7 @@ public class SecurityConfig {
         // 로그인 설정
         http.formLogin(login -> login
                                     .loginPage("/user/login")
-                                    .defaultSuccessUrl("/")
+                                    .defaultSuccessUrl("/article/list")
                                     .failureUrl("/user/login?success=100")
                                     .usernameParameter("uid")
                                     .passwordParameter("pass"));
