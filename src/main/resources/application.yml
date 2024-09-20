@@ -20,10 +20,10 @@ server:
 spring:
     application:
         name: sboard
-        version: 0.0.1
+        version: 0.0.2
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/jboard
+        url: jdbc:mysql://54.180.156.9:3306/jboard
         username: jboard
         password: "Qkqh4251@@"
     devtools:

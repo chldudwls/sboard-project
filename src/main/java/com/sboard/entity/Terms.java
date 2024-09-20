@@ -17,14 +17,11 @@ import lombok.*;
 public class Terms {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int seq;
     private String terms;
     private String privacy;
 
     public TermsDTO toDTO(){
         return TermsDTO.builder()
-                .seq(seq)
                 .terms(terms)
                 .privacy(privacy)
                 .build();
