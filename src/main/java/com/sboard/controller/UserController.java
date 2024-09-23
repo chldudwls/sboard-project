@@ -10,9 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,13 +25,12 @@ public class UserController {
 
 
     private final UserService userService;
-    private final AuthenticationManager authenticationManager; // Add AuthenticationManager
+
 
     @GetMapping("/user/login")
     public String login(){
         return "/user/login";
     }
-
 
     @GetMapping("/user/terms")
     public String terms(Model model){

@@ -85,7 +85,7 @@
                 const value = inputNames[0].value;
 
                 if(!value.match(reName)){
-                    showResultInvalid(resultName, '유효한 이름이 아닙니다.');
+                    showResultInvalid(resultName, '이름 형식이 맞지 않습니다.');
                     isNameOk = false;
                 }else{
                     showResultValid(resultName, '');
@@ -105,7 +105,7 @@
 
                 // 정규식 검사
                 if(!value.match(reNick)){
-                    showResultInvalid(resultNick, '유효한 닉네임이 아닙니다.');
+                    showResultInvalid(resultNick, '닉네임 형식이 맞지 않습니다.');
                     isNickOk = false;
                     return;
                 }
@@ -338,7 +338,7 @@
                     </table>
 
                     <div>
-                        <a th:href="@{/user/login}" class="btn btnCancel">취소</a>
+                        <a href="./login.html" class="btn btnCancel">취소</a>
                         <input type="submit" value="회원가입" class="btn btnRegister"/>
                     </div>
 
@@ -348,8 +348,8 @@
         </main>
         <footer>
             <p>
-                <span class="copyright">Copyrightⓒ 최영진(개발에반하고싶다.)</span>
-                <span class="version">[[${appInfo.appName}]] ver.[[${appInfo.appVersion}]]</span>
+                <span class="copyright">Copyrightⓒ 김철학(개발에반하다.)</span>
+                <span class="version">v1.0.1</span>
             </p>
         </footer>
     </div>    

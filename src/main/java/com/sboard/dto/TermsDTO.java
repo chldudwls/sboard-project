@@ -12,6 +12,7 @@ import lombok.*;
 @Builder
 public class TermsDTO {
 
+    private int seq;
     private String terms;
     private String privacy;
 
