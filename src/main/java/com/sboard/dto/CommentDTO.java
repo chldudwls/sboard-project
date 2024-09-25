@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -12,13 +13,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FileDTO {
+public class CommentDTO {
 
-    private int fno;
-    private int ano;
-    private String oName;
-    private String sName;
-    private int download;
+    private int no;
+    private int parent;
+    private String content;
+    private String writer;
+    private String regip;
     private String rdate;
+
+    private UserDTO user;
 
 }

@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>로그인</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script>
+        const inputId = document.getElementById(inputId);
+        const inputPass = document.getElementById(inputPass);
+        const user =
+
+        if(inputId != )
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -16,11 +23,11 @@
                     <table border="0">
                         <tr>
                             <td><img th:src="@{/img/login_ico_id.png}" alt="아이디"/></td>
-                            <td><input type="text" name="uid" placeholder="아이디 입력"/></td>
+                            <td><input id="inputId" type="text" name="uid" placeholder="아이디 입력"/></td>
                         </tr>
                         <tr>
                             <td><img th:src="@{/img/login_ico_pw.png}" alt="비밀번호"/></td>
-                            <td><input type="password" name="pass" placeholder="비밀번호 입력"/></td>
+                            <td><input id="inputPass" type="password" name="pass" placeholder="비밀번호 입력"/></td>
                         </tr>
                     </table>
                     <input type="submit" value="로그인" class="btnLogin"/>

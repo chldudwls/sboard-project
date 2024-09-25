@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -32,12 +33,23 @@ public class ArticleService {
 
         // 저장
         Article savedArticle = articleRepository.save(article);
-        
+
         // 저장된 글번호 리턴
         return savedArticle.getNo();
     }
 
     public ArticleDTO selectArticle(int no){
+
+        Optional<Article> optArticle = articleRepository.findById(no);
+
+        if(optArticle.isPresent()){
+            Article article = optArticle.get();
+            log.info(article);
+
+            ArticleDTO dto = modelMapper.map(article, ArticleDTO.class);
+            return dto;
+        }
+
         return null;
     }
 
@@ -58,13 +70,13 @@ public class ArticleService {
         // 엔티티 리스트를 DTO 리스트 변환
         List<ArticleDTO> articleList = pageArticle.getContent().stream().map(tuple -> {
 
-                    Article article = tuple.get(0, Article.class);
-                    String nick = tuple.get(1, String.class);
-                    article.setNick(nick);
+            Article article = tuple.get(0, Article.class);
+            String nick = tuple.get(1, String.class);
+            article.setNick(nick);
 
-                    return modelMapper.map(article, ArticleDTO.class);
+            return modelMapper.map(article, ArticleDTO.class);
 
-                }).toList();
+        }).toList();
 
         int total = (int) pageArticle.getTotalElements();
 

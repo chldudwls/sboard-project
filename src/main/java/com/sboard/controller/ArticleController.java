@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -65,9 +67,24 @@ public class ArticleController {
 
 
     @GetMapping("/article/view")
-    public String view(){
+    public String view(int no, Model model) {
+        log.info(no);
+        ArticleDTO articleDTO = articleService.selectArticle(no);
+
+        // 댓글 리스트가 null인 경우 빈 리스트로 초기화
+        if (articleDTO.getCommentList() == null) {
+            articleDTO.setCommentList(new ArrayList<>());
+        }
+
+        log.info(articleDTO);
+
+        model.addAttribute("articleDTO", articleDTO);
+
         return "/article/view";
     }
+
+
+
 
     @GetMapping("/article/modify")
     public String modify(){
